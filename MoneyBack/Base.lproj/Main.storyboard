@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rnf-zO-qat">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BP0-Op-bJ3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -76,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="900" y="-672.41379310344837"/>
+            <point key="canvasLocation" x="1737" y="-672"/>
         </scene>
         <!--Mes prêts-->
         <scene sceneID="k1t-Ab-TQE">
@@ -236,6 +236,178 @@
             </objects>
             <point key="canvasLocation" x="4345" y="-688"/>
         </scene>
+        <!--App Start Controller-->
+        <scene sceneID="msl-cM-Q2p">
+            <objects>
+                <viewController id="BP0-Op-bJ3" customClass="AppStartController" customModule="MoneyBack" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tu3-0S-S38">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdU-xs-Bq8">
+                                <rect key="frame" x="16" y="36" width="343" height="615"/>
+                                <connections>
+                                    <segue destination="wQM-VH-rrQ" kind="embed" identifier="displayOnboarding" id="KsK-UC-fUL"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bst-7J-91h">
+                                <rect key="frame" x="287" y="52" width="56" height="28"/>
+                                <accessibility key="accessibilityConfiguration" label="Skip"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <state key="normal" title="Passer"/>
+                                <connections>
+                                    <action selector="skipBtn:" destination="yXn-WJ-CJH" eventType="touchUpInside" id="x46-UP-alF"/>
+                                    <action selector="skipOnboarding:" destination="BP0-Op-bJ3" eventType="touchUpInside" id="5hl-VA-4B3"/>
+                                    <segue destination="Rnf-zO-qat" kind="show" identifier="GoToHomePage" id="62m-3e-HKZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cww-el-1bg" firstAttribute="trailing" secondItem="bst-7J-91h" secondAttribute="trailing" constant="32" id="3DF-aM-T5j"/>
+                            <constraint firstItem="cww-el-1bg" firstAttribute="trailing" secondItem="JdU-xs-Bq8" secondAttribute="trailing" constant="16" id="A6h-5M-aXA"/>
+                            <constraint firstItem="cww-el-1bg" firstAttribute="bottom" secondItem="JdU-xs-Bq8" secondAttribute="bottom" constant="16" id="RR1-iI-Dfg"/>
+                            <constraint firstItem="bst-7J-91h" firstAttribute="top" secondItem="cww-el-1bg" secondAttribute="top" constant="32" id="af1-6z-XIJ"/>
+                            <constraint firstItem="JdU-xs-Bq8" firstAttribute="leading" secondItem="cww-el-1bg" secondAttribute="leading" constant="16" id="h5i-YO-CXW"/>
+                            <constraint firstItem="JdU-xs-Bq8" firstAttribute="top" secondItem="cww-el-1bg" secondAttribute="top" constant="16" id="lVB-7D-yCF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cww-el-1bg"/>
+                    </view>
+                    <connections>
+                        <outlet property="onboardingContainer" destination="JdU-xs-Bq8" id="HZz-aE-bXB"/>
+                        <outlet property="skipBtn" destination="bst-7J-91h" id="1kj-Gv-ELj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="me1-sM-X2y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="yXn-WJ-CJH" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-2948" y="-707.49625187406298"/>
+        </scene>
+        <!--Onboarding - page 1-->
+        <scene sceneID="y86-Dy-xUk">
+            <objects>
+                <viewController storyboardIdentifier="firstPV" title="Onboarding - page 1" useStoryboardIdentifierAsRestorationIdentifier="YES" id="deb-nf-L4H" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WaF-XT-lex">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="CtT-B7-Gt9">
+                                <rect key="frame" x="50" y="120" width="275" height="130"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="page1" translatesAutoresizingMaskIntoConstraints="NO" id="1i1-AZ-qhc">
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="84"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prêtez de l'argent à vos amis" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtg-lo-yoS">
+                                        <rect key="frame" x="0.0" y="109" width="275" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="UIu-EH-Nv9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="krL-Lv-WER" firstAttribute="trailing" secondItem="CtT-B7-Gt9" secondAttribute="trailing" constant="50" id="UbH-Fx-yuF"/>
+                            <constraint firstItem="CtT-B7-Gt9" firstAttribute="leading" secondItem="krL-Lv-WER" secondAttribute="leading" constant="50" id="pcA-5s-FUT"/>
+                            <constraint firstItem="CtT-B7-Gt9" firstAttribute="top" secondItem="krL-Lv-WER" secondAttribute="top" constant="100" id="rbg-44-HE2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="krL-Lv-WER"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dbi-UF-jWq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2119" y="-251"/>
+        </scene>
+        <!--Onboarding - page 2-->
+        <scene sceneID="CqF-Hf-xOe">
+            <objects>
+                <viewController storyboardIdentifier="secondPV" title="Onboarding - page 2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gez-ze-Yub" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="19S-rU-T0p">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="1Ji-vd-UE3">
+                                <rect key="frame" x="50" y="120" width="275" height="141"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="page2" translatesAutoresizingMaskIntoConstraints="NO" id="9K4-eb-TV4">
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="75"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Et gardez-en une trace pour ne pas l'oublier" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTC-9I-hbV">
+                                        <rect key="frame" x="0.0" y="100" width="275" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="HLo-da-VSq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1Ji-vd-UE3" firstAttribute="top" secondItem="Cts-V1-1lB" secondAttribute="top" constant="100" id="JUt-Dw-SAA"/>
+                            <constraint firstItem="Cts-V1-1lB" firstAttribute="trailing" secondItem="1Ji-vd-UE3" secondAttribute="trailing" constant="50" id="gWp-u2-IAu"/>
+                            <constraint firstItem="1Ji-vd-UE3" firstAttribute="leading" secondItem="Cts-V1-1lB" secondAttribute="leading" constant="50" id="uo3-Eq-jlD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Cts-V1-1lB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FUX-P4-tQA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1449" y="-251"/>
+        </scene>
+        <!--Onboarding View Controller-->
+        <scene sceneID="UBn-wy-1pd">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="wQM-VH-rrQ" customClass="OnboardingViewController" customModule="MoneyBack" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Y0-h1-IWi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2120" y="-1318"/>
+        </scene>
+        <!--Onboarding - page 3-->
+        <scene sceneID="Z7s-Vr-uL8">
+            <objects>
+                <viewController storyboardIdentifier="thirdPV" title="Onboarding - page 3" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CJk-Uh-hFA" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KT1-tr-E8M">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="gMK-n2-xlf">
+                                <rect key="frame" x="50" y="120" width="275" height="152"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="page3" translatesAutoresizingMaskIntoConstraints="NO" id="48H-sr-9Ic">
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="86"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Programmez des rappels automatisés pour réclamer votre dû" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="739-xx-3Y1">
+                                        <rect key="frame" x="0.0" y="111" width="275" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="GIh-R4-XcA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="NHL-Rl-o9r" firstAttribute="trailing" secondItem="gMK-n2-xlf" secondAttribute="trailing" constant="50" id="7WS-Kj-lUt"/>
+                            <constraint firstItem="gMK-n2-xlf" firstAttribute="top" secondItem="NHL-Rl-o9r" secondAttribute="top" constant="100" id="V4y-TW-GzR"/>
+                            <constraint firstItem="gMK-n2-xlf" firstAttribute="leading" secondItem="NHL-Rl-o9r" secondAttribute="leading" constant="50" id="y4U-PV-l0p"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NHL-Rl-o9r"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Npk-Ve-0um" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-783.20000000000005" y="-251.42428785607197"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="VRa-uX-gTm">
             <objects>
@@ -252,7 +424,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uqf-w2-pIW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="40.799999999999997" y="-671.51424287856082"/>
+            <point key="canvasLocation" x="959" y="-672"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KRs-Pz-8EQ">
@@ -273,6 +445,11 @@
             <point key="canvasLocation" x="3574" y="-1003"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="page1" width="145.91999816894531" height="84"/>
+        <image name="page2" width="145" height="75.839996337890625"/>
+        <image name="page3" width="145.91999816894531" height="86.879997253417969"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aMY-Dg-IgE"/>
     </inferredMetricsTieBreakers>

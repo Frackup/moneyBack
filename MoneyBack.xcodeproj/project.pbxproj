@@ -15,6 +15,9 @@
 		D73B89EE21A5A7A500641894 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D73B89ED21A5A7A500641894 /* Assets.xcassets */; };
 		D73B89F121A5A7A500641894 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D73B89EF21A5A7A500641894 /* LaunchScreen.storyboard */; };
 		D73B89FC21A5A7A500641894 /* MoneyBackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73B89FB21A5A7A500641894 /* MoneyBackTests.swift */; };
+		D772F12E21B69801003A7184 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D772F12D21B69801003A7184 /* OnboardingViewController.swift */; };
+		D772F13021B69936003A7184 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D772F12F21B69936003A7184 /* CardView.swift */; };
+		D772F13221B69A3E003A7184 /* AppStartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D772F13121B69A3E003A7184 /* AppStartController.swift */; };
 		D7CC976221AC5355006EBCD7 /* LendingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CC976121AC5355006EBCD7 /* LendingTableViewCell.swift */; };
 		D7CC976421AC5E1C006EBCD7 /* LendingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CC976321AC5E1C006EBCD7 /* LendingTableViewController.swift */; };
 		D7CC976821AEE430006EBCD7 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CC976721AEE430006EBCD7 /* AppUser.swift */; };
@@ -44,6 +47,9 @@
 		D73B89F721A5A7A500641894 /* MoneyBackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoneyBackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D73B89FB21A5A7A500641894 /* MoneyBackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyBackTests.swift; sourceTree = "<group>"; };
 		D73B89FD21A5A7A500641894 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D772F12D21B69801003A7184 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		D772F12F21B69936003A7184 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		D772F13121B69A3E003A7184 /* AppStartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStartController.swift; sourceTree = "<group>"; };
 		D7CC976121AC5355006EBCD7 /* LendingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LendingTableViewCell.swift; sourceTree = "<group>"; };
 		D7CC976321AC5E1C006EBCD7 /* LendingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LendingTableViewController.swift; sourceTree = "<group>"; };
 		D7CC976721AEE430006EBCD7 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
@@ -89,6 +95,9 @@
 			isa = PBXGroup;
 			children = (
 				D73B89E621A5A7A100641894 /* AppDelegate.swift */,
+				D772F13121B69A3E003A7184 /* AppStartController.swift */,
+				D772F12D21B69801003A7184 /* OnboardingViewController.swift */,
+				D772F12F21B69936003A7184 /* CardView.swift */,
 				D73B89E821A5A7A100641894 /* HomePageViewController.swift */,
 				D7CC976121AC5355006EBCD7 /* LendingTableViewCell.swift */,
 				D7CC976321AC5E1C006EBCD7 /* LendingTableViewController.swift */,
@@ -136,6 +145,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D73B8A0321A5A7A500641894 /* Build configuration list for PBXNativeTarget "MoneyBackTests" */;
 			buildPhases = (
+				978178688A409115C5396995 /* [CP] Check Pods Manifest.lock */,
 				D73B89F321A5A7A500641894 /* Sources */,
 				D73B89F421A5A7A500641894 /* Frameworks */,
 				D73B89F521A5A7A500641894 /* Resources */,
@@ -208,14 +218,42 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		978178688A409115C5396995 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MoneyBackTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D73B89DF21A5A7A100641894 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D7CC976821AEE430006EBCD7 /* AppUser.swift in Sources */,
+				D772F13021B69936003A7184 /* CardView.swift in Sources */,
+				D772F13221B69A3E003A7184 /* AppStartController.swift in Sources */,
 				D7CC976421AC5E1C006EBCD7 /* LendingTableViewController.swift in Sources */,
 				D7CC976221AC5355006EBCD7 /* LendingTableViewCell.swift in Sources */,
+				D772F12E21B69801003A7184 /* OnboardingViewController.swift in Sources */,
 				D709DB5321A8145F00E345B7 /* Lending.swift in Sources */,
 				D73B89E921A5A7A100641894 /* HomePageViewController.swift in Sources */,
 				D73B89E721A5A7A100641894 /* AppDelegate.swift in Sources */,

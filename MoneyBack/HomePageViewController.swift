@@ -16,7 +16,7 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var homePageLendButton: UIButton!
     @IBOutlet weak var homePageLendDetailButton: UIButton!
     var lendings = [Lending]()
-    //var appUser = AppUser()
+    //var appUser:[AppUser]
     var money = 0
     
     override func viewDidLoad() {

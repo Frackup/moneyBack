@@ -9,13 +9,18 @@
 import UIKit
 import os.log
 
-class LendingTableViewController: UITableViewController {
+class LendingTableViewController: UITableViewController, UISearchResultsUpdating {
+
     
     //MARK: Properties
     var lendingsList = [Lending]()
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var filteredLendingsList = [Lending]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureSearchController()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -31,7 +36,7 @@ class LendingTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lendingsList.count
+        return searchController.isActive ? filteredLendingsList.count : lendingsList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,7 +47,9 @@ class LendingTableViewController: UITableViewController {
         }
 
         // Fetches the appropriate lending for the data source layout.
-        let lending = lendingsList[indexPath.row]
+        let lending = searchController.isActive ? filteredLendingsList[indexPath.row] : lendingsList[indexPath.row]
+        
+        //let lending = lendingsList[indexPath.row]
         
         cell.lendingTitle.text = lending.title
         cell.lendingAmount.text = String(lending.amount) + " €"
@@ -89,14 +96,6 @@ class LendingTableViewController: UITableViewController {
         
         switch(segue.identifier ?? "") {
         case "ShowLendingDetail":
-            /*guard let navVC = segue.destination as? UINavigationController else {
-                fatalError("It seems that your Lendings list table is not implementing Navigation controller")
-            }
-            
-            guard let lendingDetailViewController = navVC.viewControllers.first as? LendingViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }*/
-            
             guard let lendingDetailViewController = segue.destination as? LendingViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
@@ -118,21 +117,6 @@ class LendingTableViewController: UITableViewController {
     }
     
     //MARK: Actions
-    /*@IBAction func unwindToLendingList(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UITableViewController) {
-        if let sourceViewController = unwindSegue.source as? LendingViewController, let lending = sourceViewController.lending {
-            if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                // Update an existing lending.
-                lendingsList[selectedIndexPath.row] = lending
-                tableView.reloadRows(at: [selectedIndexPath], with: .none)
-            } else {
-                fatalError("Erreur au niveau de la mise à jour du tableau")
-            }
-            
-            // Save tne meals.
-            saveLendings()
-        }
-    }*/
-    
     @IBAction func unwindToHomePage(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? LendingViewController, let lending = sourceViewController.lending {
             
@@ -141,16 +125,10 @@ class LendingTableViewController: UITableViewController {
                 lendingsList[selectedIndexPath.row] = lending
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             } else {
-                os_log("coucou je suis dans le else", log: OSLog.default, type: .debug)
-                // Noprmalement pas de else ici
-                
-                // Add a new meal
-                /*let newIndexPath = IndexPath(row: meals.count, section: 0)
-                meals.append(meal)
-                tableView.insertRows(at: [newIndexPath], with: .automatic)*/
+                os_log("Else is displayed", log: OSLog.default, type: .debug)
             }
             
-            // Save tne meals.
+            // Save tne lendings.
             saveLendings()
         }
     }
@@ -164,5 +142,30 @@ class LendingTableViewController: UITableViewController {
         } else {
             os_log("Failed to save lendings...", log:OSLog.default, type: .error)
         }
+    }
+    
+    // These functions will deal with allowing to search within the lendings in the tableView
+    func configureSearchController() {
+        searchController.searchResultsUpdater = self as? UISearchResultsUpdating
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchBar.delegate = self as? UISearchBarDelegate
+    }
+    
+    func filterSearchController(_ searchBar: UISearchBar) {
+        let searchText = searchBar.text ?? ""
+        
+        filteredLendingsList = lendingsList.filter { lending in
+            let isMatchingSearchText = lending.title.lowercased().contains(searchText.lowercased()) || searchText.isEmpty
+            
+            return isMatchingSearchText
+        }
+        
+        tableView.reloadData()
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterSearchController(searchController.searchBar)
     }
 }
