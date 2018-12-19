@@ -16,8 +16,6 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
         case thirdPV
     }
     
-    var skipBtn: UIButton!
-    
     fileprivate lazy var orderedViewController: [UIViewController] = {
         return [self.getViewController(withIdentifier: PageViews.firstPV.rawValue),
                 self.getViewController(withIdentifier: PageViews.secondPV.rawValue),
@@ -32,7 +30,6 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewController.index(of: viewController) else { return nil }
         let previousIndex = viewControllerIndex - 1
-        enableSkipBtn(enabling: false)
         guard previousIndex >= 0 else { return nil }
         guard orderedViewController.count > previousIndex else { return nil }
         return orderedViewController[previousIndex]
@@ -43,10 +40,14 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
         let nextIndex = viewControllerIndex + 1
         guard nextIndex < orderedViewController.count else { return nil }
         guard orderedViewController.count > nextIndex else { return nil }
-        if nextIndex == orderedViewController.count - 1 {
-            enableSkipBtn(enabling: true)
-        }
         return orderedViewController[nextIndex]
+    }
+    
+    // UIPageViewControllerDelegate Methods
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            didFinishAnimating finished: Bool,
+                            previousViewControllers: [UIViewController],
+                            transitionCompleted completed: Bool) {
     }
     
     func presentationCount(for: UIPageViewController) -> Int {
@@ -70,12 +71,5 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    //MARK: Private Functions
-    func enableSkipBtn(enabling: Bool) {
-        skipBtn.isEnabled = enabling
-        skipBtn.isHidden = !enabling
-    }
-    
 }
 

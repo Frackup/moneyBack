@@ -13,9 +13,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let firstLaunch: FirstLaunch
+        
+        /*#if DEBUG
+            firstLaunch = alwaysFirst()
+        #else
+            firstLaunch = FirstLaunch(userDefaults: .standard, key: "firstLaunch")
+        #endif*/
+        
+        firstLaunch = FirstLaunch(userDefaults: .standard, key: "firstLaunch")
+        
+        if firstLaunch.isFirstLaunch {
+            // if the app launches for the first time, then display the AppStarter ViewController to show the onboarding screens to the user.
+            let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let appStarter: UIViewController = mainStoryBoard.instantiateViewController(withIdentifier: "appStarter") as UIViewController
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.rootViewController = appStarter
+            self.window?.makeKeyAndVisible()
+            
+        }
         return true
     }
 
@@ -41,6 +59,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    final class FirstLaunch {
+        
+        let wasLaunchedBefore: Bool
+        var isFirstLaunch: Bool {
+            return !wasLaunchedBefore
+        }
+        
+        init(getWasLaunchedBefore: () -> Bool,
+             setWasLaunchedBefore: (Bool) -> ()) {
+            let wasLaunchedBefore = getWasLaunchedBefore()
+            self.wasLaunchedBefore = wasLaunchedBefore
+            if !wasLaunchedBefore {
+                setWasLaunchedBefore(true)
+            }
+        }
+        
+        convenience init(userDefaults: UserDefaults, key: String) {
+            self.init(getWasLaunchedBefore: { userDefaults.bool(forKey: key) },
+                      setWasLaunchedBefore: { userDefaults.set($0, forKey: key)} )
+        }
+    }
+    
+    func alwaysFirst() -> FirstLaunch {
+        return FirstLaunch(getWasLaunchedBefore: { return false }, setWasLaunchedBefore: { _ in })
+    }
 }
-

@@ -11,9 +11,9 @@ import os.log
 
 class AppStartController: UIViewController {
     
-
-    @IBOutlet weak var skipBtn: UIButton!
     @IBOutlet weak var onboardingContainer: UIView!
+    var appUser: AppUser!
+    var window: UIWindow?
     
     @IBAction func skipOnboarding(_ sender: UIButton) {
         sender.removeFromSuperview()
@@ -23,8 +23,10 @@ class AppStartController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        skipBtn.isEnabled = false
-        skipBtn.isHidden = true
+        //Create a new user
+        os_log("Creating a new user", log: OSLog.default, type: .debug)
+        saveAppUser()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,19 +41,42 @@ class AppStartController: UIViewController {
         
         switch(segue.identifier ?? "") {
         case "GoToHomePage":
-            os_log("Going to the login page.", log: OSLog.default, type: .debug)
+            os_log("Going to the home page.", log: OSLog.default, type: .debug)
+            
+            /*guard let navVC = segue.destination as? UINavigationController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let homePageViewController = navVC.topViewController as? HomePageViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }*/
+            
+            //homePageViewController.appUser = appUser
             
         case "displayOnboarding":
             os_log("Displaying onboarding screen.", log: OSLog.default, type: .debug)
             
-            guard let onboardingController = segue.destination as? OnboardingViewController else {
+            /*guard let onboardingController = segue.destination as? OnboardingViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
-            onboardingController.skipBtn = skipBtn
+            }*/
             
         default:
             fatalError("Unexpected segue identifier: \(segue.identifier)")
         }
-    } 
+    }
+    
+    //MARK: Private Methods
+    private func loadAppUser() -> AppUser? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: AppUser.ArchiveURL.path) as? AppUser
+    }
+    
+    func saveAppUser() {
+        let isSuccessfullSave = NSKeyedArchiver.archiveRootObject(AppUser(totalAmount: 0, paypalConnected: false), toFile: AppUser.ArchiveURL.path)
+        
+        if isSuccessfullSave {
+            os_log("User successfully saved by AppStartController", log:OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save user in AppStartController...", log:OSLog.default, type: .error)
+        }
+    }
 }

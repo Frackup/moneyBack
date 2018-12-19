@@ -49,10 +49,7 @@ class AppUser: NSObject, NSCoding {
         // The amount is required, if we cannot decode an amount, the initializer should fail
         let totalAmount = aDecoder.decodeInteger(forKey: PropertyKey.totalAmount)
         
-        guard let paypalConnected = aDecoder.decodeObject(forKey: PropertyKey.paypalConnected) as? Bool else {
-            os_log("Unable to decode the paypal connection status for the app user", log: OSLog.default, type: .debug)
-            return nil
-        }
+        let paypalConnected = aDecoder.decodeBool(forKey: PropertyKey.paypalConnected)
         
         self.init(totalAmount: totalAmount, paypalConnected: paypalConnected)
     }

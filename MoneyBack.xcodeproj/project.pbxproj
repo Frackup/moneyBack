@@ -21,6 +21,7 @@
 		D7CC976221AC5355006EBCD7 /* LendingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CC976121AC5355006EBCD7 /* LendingTableViewCell.swift */; };
 		D7CC976421AC5E1C006EBCD7 /* LendingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CC976321AC5E1C006EBCD7 /* LendingTableViewController.swift */; };
 		D7CC976821AEE430006EBCD7 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CC976721AEE430006EBCD7 /* AppUser.swift */; };
+		D7CD3A4921C144F400992789 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD3A4821C144F400992789 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		D7CC976121AC5355006EBCD7 /* LendingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LendingTableViewCell.swift; sourceTree = "<group>"; };
 		D7CC976321AC5E1C006EBCD7 /* LendingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LendingTableViewController.swift; sourceTree = "<group>"; };
 		D7CC976721AEE430006EBCD7 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		D7CD3A4821C144F400992789 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				D7CC976121AC5355006EBCD7 /* LendingTableViewCell.swift */,
 				D7CC976321AC5E1C006EBCD7 /* LendingTableViewController.swift */,
 				D709DB5421A82A3600E345B7 /* LendingViewController.swift */,
+				D7CD3A4821C144F400992789 /* SettingsViewController.swift */,
 				D709DB5221A8145F00E345B7 /* Lending.swift */,
 				D7CC976721AEE430006EBCD7 /* AppUser.swift */,
 				D73B89EA21A5A7A100641894 /* Main.storyboard */,
@@ -250,6 +253,7 @@
 			files = (
 				D7CC976821AEE430006EBCD7 /* AppUser.swift in Sources */,
 				D772F13021B69936003A7184 /* CardView.swift in Sources */,
+				D7CD3A4921C144F400992789 /* SettingsViewController.swift in Sources */,
 				D772F13221B69A3E003A7184 /* AppStartController.swift in Sources */,
 				D7CC976421AC5E1C006EBCD7 /* LendingTableViewController.swift in Sources */,
 				D7CC976221AC5355006EBCD7 /* LendingTableViewCell.swift in Sources */,
@@ -422,7 +426,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = LKK48C8NGY;
 				INFOPLIST_FILE = MoneyBack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -442,7 +446,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = LKK48C8NGY;
 				INFOPLIST_FILE = MoneyBack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
